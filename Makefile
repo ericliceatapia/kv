@@ -5,12 +5,8 @@ TARGET = kv
 OBJ_DIR = obj
 SRC_DIR = src
 
-
 SRCS = main.cpp $(wildcard $(SRC_DIR)/*.cpp)
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
-
-all: $(TARGET)
-		./$(TARGET)
 
 $(TARGET): $(OBJS)
 		$(CXX) $(OBJS) -o $(TARGET)
@@ -24,10 +20,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 $(OBJ_DIR):
 		mkdir -p $(OBJ_DIR)
 
-run: $(TARGET)
-		./$(TARGET)
-
 clean:
 		rm -rf $(OBJ_DIR) $(TARGET)
 
-.PHONY: all run clean
+.PHONY: clean

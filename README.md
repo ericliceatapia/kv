@@ -16,12 +16,6 @@ The project follows a modular structure to separate the entry point from the cor
 ## Build Instructions
 The project utilizes a custom Makefile.
 
-### Build and Run
-To compile and execute the program in one step:
-```bash
-make
-```
-
 ### Manual Build
 To generate the binary without immediate execution:
 ```bash
