@@ -23,7 +23,11 @@ int main(int argc, char *argv[]) {
     } else if (cmd.type == 'g') {
       std::cout << get(cmd.key) << std::endl;
     } else if (cmd.type == 'd') {
-      std::cout << del(cmd.key) << std::endl;
+        try {
+            del(cmd.key);
+        } catch (const std::out_of_range &e) {
+            std::cerr << e.what() << std::endl;
+        }
     } else if (cmd.type == 'c') {
       std::cout << clr() << std::endl;
     } else if (cmd.type == 'a') {

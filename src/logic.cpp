@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <unordered_map>
 
 static std::unordered_map<int, std::string> kv_store;
@@ -48,12 +49,14 @@ std::string get(int key) {
   return "";
 }
 
-std::string del(int key) {
-  std::ostringstream oss;
-  oss << "delete called on " << key;
-  return oss.str();
+void del(int key) {
+  size_t removed = kv_store.erase(key);
+
+  if (removed == 0) {
+    throw std::out_of_range(std::to_string(key) + " not found.");
+  }
 }
 
-std::string clr() { return "clear called"; }
+void clr() { kv_store.clear(); }
 
 std::string all() { return "all called"; }
