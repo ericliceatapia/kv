@@ -19,7 +19,7 @@ The project utilizes a custom Makefile.
 ### Manual Build
 To generate the binary without immediate execution:
 ```bash
-make kv
+make
 ```
 
 ### Cleanup

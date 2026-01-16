@@ -4,10 +4,10 @@
 #include <vector>
 
 struct Command {
-  char type;
   int key;
   std::string value;
   bool valid;
+  char type;
 };
 
 Command parse_input(const std::string &input);

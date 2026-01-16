@@ -2,6 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -O3 -march=native -Iinclude
 TARGET = kv
 
+DB_FILE = database.txt
 OBJ_DIR = obj
 SRC_DIR = src
 
@@ -21,6 +22,6 @@ $(OBJ_DIR):
 		mkdir -p $(OBJ_DIR)
 
 clean:
-		rm -rf $(OBJ_DIR) $(TARGET)
+		rm -rf $(OBJ_DIR) $(DB_FILE) $(TARGET)
 
 .PHONY: clean

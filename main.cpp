@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     } else if (cmd.type == 'c') {
       clr();
     } else if (cmd.type == 'a') {
-      std::cout << all() << std::endl;
+      std::cout << all();
     }
   }
 
