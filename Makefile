@@ -2,26 +2,22 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -O3 -march=native -Iinclude
 TARGET = kv
 
-DB_FILE = database.txt
-OBJ_DIR = obj
-SRC_DIR = src
+SRC = main.cpp $(wildcard src/*.cpp)
+OBJ = $(patsubst %.cpp, obj/%.o, $(notdir $(SRC)))
 
-SRCS = main.cpp $(wildcard $(SRC_DIR)/*.cpp)
-OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
+all: $(TARGET)
 
-$(TARGET): $(OBJS)
-		$(CXX) $(OBJS) -o $(TARGET)
+$(TARGET): $(OBJ)
+		$(CXX) $(OBJ) -o $(TARGET)
 
-$(OBJ_DIR)/main.o: main.cpp | $(OBJ_DIR)
+obj/%.o: src/%.cpp | obj
 		$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+obj/main.o: main.cpp | obj
 		$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJ_DIR):
-		mkdir -p $(OBJ_DIR)
+obj:
+		mkdir -p obj
 
 clean:
-		rm -rf $(OBJ_DIR) $(DB_FILE) $(TARGET)
-
-.PHONY: clean
+		rm -rf obj database.txt $(TARGET)
